@@ -1,0 +1,9 @@
+app:
+  name: wzml-x-bot
+  
+services:
+  - name: wzml-x-bot
+    instance_type: free
+    env: python
+    buildCommand: pip install -r requirements.txt
+    runCommand: bash start.sh
