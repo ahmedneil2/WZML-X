@@ -1,11 +1,16 @@
-FROM mysterysd/wzmlx:latest
+FROM python:3.10-slim
 
-WORKDIR /usr/src/app
-RUN chmod 777 /usr/src/app
+WORKDIR /app
+COPY . .
 
-COPY requirements.txt .
+RUN apt-get update && apt-get upgrade -y
+RUN apt-get install -y \
+    git \
+    python3-pip \
+    bash
+
 RUN pip3 install --no-cache-dir -r requirements.txt
 
-COPY . .
+RUN chmod +x start.sh
 
 CMD ["bash", "start.sh"]
